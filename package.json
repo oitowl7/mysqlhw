@@ -22,6 +22,7 @@
   "homepage": "https://github.com/oitowl7/mysqlhw#readme",
   "dependencies": {
     "inquirer": "^5.0.1",
-    "mysql": "^2.15.0"
+    "mysql": "^2.15.0",
+    "table": "^4.0.2"
   }
 }

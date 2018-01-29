@@ -140,13 +140,14 @@ var purchaseScreen = (res) => {
         console.log("That will be $" + price + " or " + pennies + " pennies.");
         console.log("Please pay with pennies as their mineral value is worth more than their face value and I have a scheme to get rich.");
         console.log("**********************\n")
-        updateTableAfterPurchase(res, selection);
+        updateTableAfterPurchase(res, selection, price);
     })
 }
 
-var updateTableAfterPurchase = (result, count) => {
+var updateTableAfterPurchase = (result, count, price) => {
     // console.log(res);
     var newCount = result[0].stock - count;
+    var newSales = result[0].product_sales + price;
     connection.query("UPDATE products set ? where ?",
     [
         {
@@ -154,6 +155,9 @@ var updateTableAfterPurchase = (result, count) => {
         },
         {
             id: result[0].id
+        },
+        {
+            product_sales: newSales
         }
     ],
     function(err, res) {

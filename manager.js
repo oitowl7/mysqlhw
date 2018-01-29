@@ -1,6 +1,7 @@
 var mysql = require("mysql");
 var inquirer = require("inquirer");
 var landing = require("./landing.js");
+var supervisorFile = require('./supervisor.js');
 
 var connection = mysql.createConnection({
     host: "localhost",
@@ -21,7 +22,6 @@ exports.directory = [
         managerOptions: function(){
             managerOptions();
         }, quit: function(){
-            console.log("manager quit ran");
             connection.end();
             return;
         }
