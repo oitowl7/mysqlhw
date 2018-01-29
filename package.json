@@ -1,0 +1,27 @@
+{
+  "name": "mysqlhw",
+  "version": "1.0.0",
+  "description": "homework 12",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oitowl7/mysqlhw.git"
+  },
+  "keywords": [
+    "sql",
+    "node"
+  ],
+  "author": "Jordan Shear",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oitowl7/mysqlhw/issues"
+  },
+  "homepage": "https://github.com/oitowl7/mysqlhw#readme",
+  "dependencies": {
+    "inquirer": "^5.0.1",
+    "mysql": "^2.15.0"
+  }
+}
