@@ -1,12 +1,18 @@
-1,Fred & Friends Bear Hands Oven Mitts,Housewares,14,40,Keep it silly in the kitchen with these bear-paw oven mitts
-2,LumiSource W00PSY Desk Lamp,Furniture,25,10,"It might look like an accident in progres, but its just an illuminating illusion"
-3,Clocky Runaway Alarm Clock on Wheels,Gadgets,35,8,Have a hard time getting up in the morning? This alarm clock runs away from you so you have to get up!
-4,Wine Condom,Housewares,14,50,A cover for your wine to keep it from oxidizing when you don't finish it. What else would it be? Pervs.
-5,Amurleopard Octopus Knit Cthulhu Beanie,Fashion,3,200,For when your face is freezing but you have to terrify strangers.
-6,koziol Hedgehog Cheese Grater,Housewares,13,2,When you need a friend in the kitchen who doesn't get in the way.
-7,Floppy Disks - 200 Ct.,Electronics,20,5000,Please buy these. We bought them in bulk right before the whole CD thing happened
-8,Coffee Makes Me Poop Coffee Mug,Housewares,9,20,Tell everyone around just how much of a masochist you are
-9,Retro Series Pop-Up Hot Dog Toaster,Gadgets,15,4,Best selling pop-up hot dog toaster this side of I-64
-10,Severus Snape Action Figure,Fashion,9,10,"If you're a Harry Potter fan (hahahahahahhahahahaha...""if"")"
-11,"16GB ""Thumb"" Drive",Electronics,9,300,Is that a thumb sticking out of your computer? Nope...just my thumb drive
-12,The Bobcat Mullet Headband,Fashion,55,1,The best headband for only the most bitchin of mullets.
+id,product_name,department_name,price,stock,description,product_sales
+1,"Fred & Friends Bear Hands Oven Mitts",Housewares,14.00,38,"Keep it silly in the kitchen with these bear-paw oven mitts",56
+2,"LumiSource W00PSY Desk Lamp",Furniture,25.00,9,"It might look like an accident in progres, but its just an illuminating illusion",9
+3,"Clocky Runaway Alarm Clock on Wheels",Gadgets,35.00,9,"Have a hard time getting up in the morning? This alarm clock runs away from you so you have to get up!",27
+4,"Wine Condom",Housewares,14.00,51,"A cover for your wine to keep it from oxidizing when you don't finish it. What else would it be? Pervs.",42
+5,"Amurleopard Octopus Knit Cthulhu Beanie",Fashion,3.00,226,"For when your face is freezing but you have to terrify strangers.",198
+6,"koziol Hedgehog Cheese Grater",Housewares,13.00,2,"When you need a friend in the kitchen who doesn't get in the way.",65
+7,"Floppy Disks - 200 Ct.",Electronics,20.00,5000,"Please buy these. We bought them in bulk right before the whole CD thing happened",20
+8,"Coffee Makes Me Poop Coffee Mug",Housewares,9.00,20,"Tell everyone around just how much of a masochist you are",81
+9,"Retro Series Pop-Up Hot Dog Toaster",Gadgets,15.00,4,"Best selling pop-up hot dog toaster this side of I-64",105
+10,"Severus Snape Action Figure",Fashion,9.00,10,"If you're a Harry Potter fan (hahahahahahhahahahaha..."if")",90
+11,"16GB "Thumb" Drive",Electronics,9.00,300,"Is that a thumb sticking out of your computer? Nope...just my thumb drive",900
+12,"The Bobcat Mullet Headband",Fashion,55.00,1,"The best headband for only the most bitchin of mullets.",3025
+14,"Budreaux's Butt Paste",Fashion,5.50,35,"It's paste for your butt. What's not to love?",11
+15,"Nicholas Cage Throw Pillow",Furniture,14.00,2,"When you need all your guests to know who the GOAT is, you'll be prepared",28
+16,"Pup-A-Razzi Silver Screen Starlet Dog Costume",Fashion,21.29,5,"Comes with built in dog cleavage",21
+17,"Watermelon Flavored Oreos",Food,4.25,5,"These are far and away the most unique and....tasty? cookies that have ever been...made? spawned? Whatever...they suck",0
+18,"Crisply Shrimp Chips",Food,3.00,40,"Taking the worst parts of the shrimp flavor and putting them on a cripsy piece of all white flour chip. What could be better?",0
