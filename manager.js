@@ -2,6 +2,7 @@ var mysql = require("mysql");
 var inquirer = require("inquirer");
 var landing = require("./landing.js");
 var supervisorFile = require('./supervisor.js');
+const {table} = require('table');
 
 var connection = mysql.createConnection({
     host: "localhost",
@@ -21,7 +22,8 @@ exports.directory = [
         },
         managerOptions: function(){
             managerOptions();
-        }, quit: function(){
+        }, 
+        quit: function(){
             connection.end();
             return;
         }
@@ -66,15 +68,31 @@ var managerOptions = ()=> {
 
 var viewProductsForSale = () => {
     connection.query("SELECT * FROM products", function (err, res){
+        console.log("**********************");
+        // console.log(res);
+        var tempArray = [];
         for (var i = 0; i < res.length; i++) {
-            console.log("**********************");
-            console.log("Product: " + res[i].product_name);
-            console.log("Product ID: " + res[i].id);
-            console.log("Department: " + res[i].department);
-            console.log("Price: " + res[i].price);
-            console.log("Stock: " + res[i].stock);
-            console.log("**********************");
+            tempArray[i] = [res[i].id, res[i].product_name, res[i].department_name, res[i].price, res[i].stock];
         }
+        let data,
+        output,
+        options;
+        var headerArray = ['Product Id', 'Product Name', 'Department', 'Price($)', 'Stock']
+        var dataArray = []
+        dataArray.push(headerArray);
+        for (var i = 0; i < tempArray.length; i++) {
+            dataArray.push(tempArray[i]);
+        }
+        data = dataArray;
+    
+        options = {
+    
+            drawHorizontalLine: (index, size) => {
+                return index === 0 || index === 1  || index === size;
+            }
+        };
+        output = table(data, options);
+        console.log(output);
         managerOptions();
     })
 }
@@ -148,72 +166,103 @@ var addToInventory = () => {
 }
 
 var addNewInventory = () => {
-    var question = [
-        {
-            type: "input",
-            message: "What is the name of the product you would like to add?",
-            name: "product_name",
-            validate: function(input){
-                if (input && input.length > 1){
-                    return true;
-                } else {
-                    console.log("Please enter a longer value");
-                    return false;
-                }
-            }
-        },
-        {
-            type: "input",
-            message: "How many would you like to add to inventory?",
-            name: "stock",
-            validate: function(input){
-                if (isNaN(input) || input < 1 || input % 1 != 0){
-                    console.log("\nPlease select a positive whole number");
-                    console.log(input % 1)
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-        },
-        {
-            type: "input",
-            message: "What is the price of the item?",
-            name: "price",
-            validate: function(input){
-                if (isNaN(input) || input < 1){
-                    console.log("\nPlease select a positive number");
-                    console.log(input % 1)
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-        },
-        {
-            type: "list",
-            message: "What is the department of the product you would like to add?",
-            name: "department_name",
-            choices: ["Housewares", "Furniture", "Gadgets", "Electronics", "Fashion"]
-        },
-        {
-            type: "input",
-            message: "Please write a brief description: ",
-            name: "description"
+    connection.query("SELECT department_name FROM departments", (err, res) => {
+        var departmentArray = [];
+        for (var i = 0; i < res.length; i++){
+            departmentArray.push(res[i].department_name);
         }
-    ];
-    inquirer.prompt(question).then((answer) => {
-        connection.query("INSERT INTO products set ?", 
-        {
-            product_name: answer.product_name,
-            department_name: answer.department_name,
-            price: answer.price,
-            stock: answer.stock,
-            description: answer.description
-        }, (err, res) => {
-            console.log("**********************");
-            console.log(answer.product_name + " has been added with a stock of " + answer.stock);
-            managerOptions();
+        var question = [
+            {
+                type: "input",
+                message: "What is the name of the product you would like to add?",
+                name: "product_name",
+                validate: function(input){
+                    if (input && input.length > 1){
+                        return true;
+                    } else {
+                        console.log("Please enter a longer value");
+                        return false;
+                    }
+                }
+            },
+            {
+                type: "input",
+                message: "How many would you like to add to inventory?",
+                name: "stock",
+                validate: function(input){
+                    if (isNaN(input) || input < 1 || input % 1 != 0){
+                        console.log("\nPlease select a positive whole number");
+                        console.log(input % 1)
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
+            },
+            {
+                type: "input",
+                message: "What is the price of the item?",
+                name: "price",
+                validate: function(input){
+                    if (isNaN(input) || input < 1){
+                        console.log("\nPlease select a positive number");
+                        console.log(input % 1)
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
+            },
+            {
+                type: "list",
+                message: "What is the department of the product you would like to add?",
+                name: "department_name",
+                choices: departmentArray
+            },
+            {
+                type: "input",
+                message: "Please write a brief description: ",
+                name: "description"
+            }
+        ];
+        inquirer.prompt(question).then((answer) => {
+            connection.query("INSERT INTO products set ?", 
+            {
+                product_name: answer.product_name,
+                department_name: answer.department_name,
+                price: answer.price,
+                stock: answer.stock,
+                description: answer.description,
+                product_sales: 0
+            }, (err, res) => {
+                console.log("**********************");
+                console.log(answer.product_name + " has been added with a stock of " + answer.stock);
+                managerOptions();
+            })
         })
     })
+}
+
+var tableMaker = (res) => {
+    console.log(departmentArray)
+    let data,
+    output,
+    options;
+    var headerArray = ['Department Id', 'Department Name', 'Overhead Costs($)', 'Sales($)', 'Profit/Loss($)']
+    var dataArray = []
+    dataArray.push(headerArray);
+    for (var i = 0; i < departmentArray.length; i++) {
+        dataArray.push(departmentArray[i].array);
+    }
+    data = dataArray;
+
+    options = {
+
+        drawHorizontalLine: (index, size) => {
+            return index === 0 || index === 1  || index === size;
+        }
+    };
+    output = table(data, options);
+    console.log(output);
+    supervisorOptions();
 }

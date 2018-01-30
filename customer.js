@@ -102,7 +102,7 @@ var taskToPerform = (res)=> {
             console.log("**********************")
             getInitialInformation();
         } else if (answer.selection === "Return to Start") {
-            landing.directory[0].start();
+            landing.directory[0].start("customer");
         } else {
             connection.end();
             // console.log("return");
@@ -147,17 +147,18 @@ var purchaseScreen = (res) => {
 var updateTableAfterPurchase = (result, count, price) => {
     // console.log(res);
     var newCount = result[0].stock - count;
-    var newSales = result[0].product_sales + price;
-    connection.query("UPDATE products set ? where ?",
+    var newSales = parseFloat(result[0].product_sales) + price;
+    console.log(newSales);
+    connection.query("UPDATE products set ?, ? where ?",
     [
         {
             stock: newCount
         },
         {
-            id: result[0].id
+            product_sales: newSales
         },
         {
-            product_sales: newSales
+            id: result[0].id            
         }
     ],
     function(err, res) {

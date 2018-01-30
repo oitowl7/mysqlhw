@@ -25,11 +25,6 @@ exports.directory = [
 ]
 //function to direct the user to either the shoppers page or the employee portal page
 var start = (initialized) => {
-    if (initialized && !initializeLocation){
-        console.log("this ran");
-        initializeLocation = initialized;
-        console.log(initializeLocation);
-    }
     var question = [
         {
             type: "list",
@@ -53,11 +48,13 @@ var start = (initialized) => {
             //confusing way of doing this...certainly there must be a better way. Basically, if the connection hasn't been initialized...it just quits. Otherwise...it runs the 
             if (!initialized){
                 return
-            } else {if(initialized === "customer") {
+            } else if(initialized === "customer") {
                 customerFile.directory[0].quit();
             } else if (initialized === "manager") {
                 managerFile.directory[0].quit();
-            }}
+            } else {
+                supervisorFile.directory[0].quit();
+            }
         }
     })
 }
