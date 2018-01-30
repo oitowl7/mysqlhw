@@ -42,6 +42,7 @@ var start = (initialized) => {
             }
             return
         } else if (answer.selection === "Employee Portal") {
+            console.log("Initialized in landing: " + initialized);
             employeePortal.directory[0].managerOrSupervisor(initialized);
             return
         } else {

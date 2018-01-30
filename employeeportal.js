@@ -7,13 +7,14 @@ var supervisorFile = require('./supervisor.js');
 
 exports.directory = [
     {
-        managerOrSupervisor: function(){
-            managerOrSupervisor();
+        managerOrSupervisor: function(initialized){
+            managerOrSupervisor(initialized);
         }
     }
 ];
 
 var managerOrSupervisor = (initialized) =>{
+    console.log("Initialized: " + initialized);
     var guesses = 0;
     var question1 = [
         {
@@ -57,13 +58,17 @@ var validation = (answer1, initialized) => {
         }
         if (answer1 === "Manager"){
             if (initialized){
+                console.log("this ran")
+                console.log(initialized)
                 mangagerFile.directory[0].managerOptions();
             } else {
+                console.log("that ran")
+                console.log(initialized)
                 mangagerFile.directory[0].connector();
             }
         } else{
             if (initialized){
-                supervisorFile.directory[0].managerOptions();
+                supervisorFile.directory[0].supervisorOptions();
             } else {
                 supervisorFile.directory[0].connector();
             }

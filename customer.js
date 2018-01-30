@@ -105,7 +105,6 @@ var taskToPerform = (res)=> {
             landing.directory[0].start("customer");
         } else {
             connection.end();
-            // console.log("return");
             return
         }
     })
