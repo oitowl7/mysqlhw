@@ -13,7 +13,7 @@ exports.directory = [
     }
 ];
 
-var managerOrSupervisor = (initialized)=>{
+var managerOrSupervisor = (initialized) =>{
     var guesses = 0;
     var question1 = [
         {
@@ -69,8 +69,4 @@ var validation = (answer1, initialized) => {
             }
         }
     })
-}
-
-var supervisorFunction = () => {
-    console.log("supervisor function");
 }

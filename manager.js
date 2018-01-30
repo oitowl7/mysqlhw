@@ -58,8 +58,8 @@ var managerOptions = ()=> {
         } else if (answer.selection === "Add New Product"){
             addNewInventory();
         } else if (answer.selection === "Quit") {
-            return;
             connection.end();
+            return;
         } else {
             landing.directory[0].start("manager");
         }
@@ -241,28 +241,4 @@ var addNewInventory = () => {
             })
         })
     })
-}
-
-var tableMaker = (res) => {
-    console.log(departmentArray)
-    let data,
-    output,
-    options;
-    var headerArray = ['Department Id', 'Department Name', 'Overhead Costs($)', 'Sales($)', 'Profit/Loss($)']
-    var dataArray = []
-    dataArray.push(headerArray);
-    for (var i = 0; i < departmentArray.length; i++) {
-        dataArray.push(departmentArray[i].array);
-    }
-    data = dataArray;
-
-    options = {
-
-        drawHorizontalLine: (index, size) => {
-            return index === 0 || index === 1  || index === size;
-        }
-    };
-    output = table(data, options);
-    console.log(output);
-    supervisorOptions();
 }
