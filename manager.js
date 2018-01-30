@@ -69,15 +69,58 @@ var managerOptions = ()=> {
 var viewProductsForSale = () => {
     connection.query("SELECT * FROM products", function (err, res){
         console.log("**********************");
-        // console.log(res);
         var tempArray = [];
         for (var i = 0; i < res.length; i++) {
-            tempArray[i] = [res[i].id, res[i].product_name, res[i].department_name, res[i].price, res[i].stock];
+            tempArray[i] = [res[i].id, res[i].product_name, res[i].department_name, res[i].price, res[i].stock, res[i].description];
+        }
+        let data,
+        output,
+        config,
+        options;
+        var headerArray = ['Product Id', 'Product Name', 'Department', 'Price($)', 'Stock', 'Description']
+        var dataArray = []
+        dataArray.push(headerArray);
+        for (var i = 0; i < tempArray.length; i++) {
+            dataArray.push(tempArray[i]);
+        }
+        data = dataArray;
+        config = {
+            columns: {
+                5: {
+                    width: 80
+                }
+            }
+        }
+        options = {
+    
+            drawHorizontalLine: (index, size) => {
+                return index === 0 || index === 1  || index === size;
+            }
+        };
+        output = table(data,  config, options);
+        console.log(output);
+        managerOptions();
+    })
+}
+
+var viewLowInventory = () => {
+    console.log("\n**********************");
+    console.log("Low inventory is considered any item with under 10 units remaining");
+    connection.query("Select product_name, stock FROM products Where stock < " + 10,
+    function(err, res){
+        // for(var i = 0; i < res.length; i++) {
+        //     console.log("**********************");
+        //     console.log("Product: " + res[i].product_name);
+        //     console.log("Stock: " + res[i].stock);
+        // }
+        var tempArray = [];
+        for (var i = 0; i < res.length; i++) {
+            tempArray[i] = [res[i].product_name, res[i].stock];
         }
         let data,
         output,
         options;
-        var headerArray = ['Product Id', 'Product Name', 'Department', 'Price($)', 'Stock']
+        var headerArray = ['Product Name', 'Stock']
         var dataArray = []
         dataArray.push(headerArray);
         for (var i = 0; i < tempArray.length; i++) {
@@ -93,20 +136,6 @@ var viewProductsForSale = () => {
         };
         output = table(data, options);
         console.log(output);
-        managerOptions();
-    })
-}
-
-var viewLowInventory = () => {
-    console.log("\n**********************");
-    console.log("Low inventory is considered any item with under 10 units remaining");
-    connection.query("Select product_name, stock FROM products Where stock < " + 10,
-    function(err, res){
-        for(var i = 0; i < res.length; i++) {
-            console.log("**********************");
-            console.log("Product: " + res[i].product_name);
-            console.log("Stock: " + res[i].stock);
-        }
         managerOptions();
     })
 }
