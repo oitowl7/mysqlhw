@@ -14,7 +14,6 @@ exports.directory = [
 ];
 
 var managerOrSupervisor = (initialized) =>{
-    console.log("Initialized: " + initialized);
     var guesses = 0;
     var question1 = [
         {

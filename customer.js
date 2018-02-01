@@ -94,7 +94,6 @@ var taskToPerform = (res)=> {
         }
     ]
     inquirer.prompt(question).then((answer) => {
-        console.log(answer.selection);
         if (answer.selection === "Purchase"){
             purchaseScreen(res);
         } else if (answer.selection === "Go Back") {
@@ -117,7 +116,6 @@ var purchaseScreen = (res) => {
             validate: function(input){
                 if (isNaN(input) || input < 1 || input % 1 != 0){
                     console.log("\nPlease select a positive whole number");
-                    console.log(input % 1)
                     return false;
                 } else {
                     if (input > res[0].stock) {
@@ -147,7 +145,6 @@ var updateTableAfterPurchase = (result, count, price) => {
     // console.log(res);
     var newCount = result[0].stock - count;
     var newSales = parseFloat(result[0].product_sales) + price;
-    console.log(newSales);
     connection.query("UPDATE products set ?, ? where ?",
     [
         {
