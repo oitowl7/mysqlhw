@@ -78,7 +78,7 @@ If supervisor was selected in the employee portal, then the user is directed to 
 
 This table displays each department that currently has an item that can be sold inside of it. It desplays the department id, name, overhead cost, sales, and total loss/profit. This information is all taken from two databases on our SQL database and combined to gather this information.
 
-+Add New Department
++ Add New Department
 
 ![alt text](https://imgur.com/Jsv79lb.jpg "View Departments")
 
